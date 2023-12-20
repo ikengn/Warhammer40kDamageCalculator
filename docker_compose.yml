@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: mysql_image
+    container_name : mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: cs506
+      MYSQL_DATABASE: warhammerdb
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "33306:3306"
+  tomcat:
+    image: tomcat_image
+    container_name : tomcat_container
+    restart: always
+    environment:
+      DATABASE_host: db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: cs506
+      DATABASE_NAME: db
+      DATABASE_PORT: 3306
+    ports:
+      - "8000:8080"
+    links: 
+      - db

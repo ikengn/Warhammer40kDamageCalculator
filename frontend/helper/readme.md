@@ -1,0 +1,1 @@
+This folder will contain all of the JS code that works with the html code to help initialize and communicate the user's webpage interactions and the rest of the backend/db/server code

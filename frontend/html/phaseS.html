@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PhaseS</title>
+    <script src="phaseS2.js"></script>
+    <script src="phaseS.js"></script>
+    <link rel="stylesheet" href="phaseS.css">
+</head>
+
+<body>
+    <div class="Select Units">
+        <label for="UnitA">Unit A:</label>
+        <input type="text" id="UnitA">
+        <label for="Weapon A">Weapon A:</label>
+        <input type="text" id="Weapon A">
+    </div>
+    <div class="Select Units">
+        <label for="UnitD">Unit D:</label>
+        <input type="text" id="UnitD">
+        <label for="Weapon D">Weapon D:</label>
+        <input type="text" id="Weapon D">
+    </div>
+
+    <div class="RollStyle">
+        <label for="RollOption">Style of Roll:</label>
+        <div id="RollOption">
+            <label for="RollA"><input type="radio" id="RollA" name="Roll" value="UserInput">User Input</label>
+            <label for="RollB"><input type="radio" id="RollB" name="Roll" value="Random">Random</label>
+        </div>
+    </div>
+
+    <div class="Calculate">
+        <button id="buttonBegin" onclick="rollDice()">Begin</button>
+    </div>
+
+    <div class="Rolls">
+        <!--Dice are shown-->
+        <div id="diceRolls"></div>
+        <button id="buttonCalc" onclick="rollDice2()">Calculate Hit</button>
+        <button id="buttonWound">Wound</button>
+    </div>
+
+    <div class="Rolls2">
+        <!--Dice are shown-->
+        <div id="diceRolls2"></div>
+        <button id="buttonCalcWound" onclick="rollDice3()">Calculate Wound</button>
+        <button id="buttonThrow">Saving Throw</button>
+    </div>
+
+    <div class="Rolls3">
+        <!--Dice are shown-->
+        <div id="diceRolls3"></div>
+        <div>Total Damage Dealt:</div>
+        <button id="buttonCalcDamage">Calculate Damage</button>
+        <button id="buttonReCalc">Re-Calc</button>
+        <button id="buttonSaveCalc">Save Calc</button>
+        <button id="buttonNext">Next Phase</button>
+    </div>
+
+</body>
+
+</html>

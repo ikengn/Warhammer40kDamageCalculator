@@ -1,0 +1,1 @@
+This Directory contains the calculations and input checking for the Warhammer damage calculator

@@ -1,0 +1,1 @@
+this folder contains all of the front end code.  This is the code that the user will interact with.  This includes the html code and the JS helper code

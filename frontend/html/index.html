@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script>
+    document.addEventListener("DOMContentLoaded",function set(){
+      window.location.href="home.jsp";
+    })
+  </script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Warhammer Damage Calculator!</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <%@ include file="navBar.html" %>
+    <div id = 'textInput'>
+        <h1 id="center"><u>Select first Unit</u></h1>
+        <h1 id="center" style="margin-left: 130px;"><u>Select second Unit</u></h1>
+    </div>
+    <div id = 'textInput'>
+        <select  id = "Unit1" style="height: 30px; margin-right: 180px; margin-left: 20px;">
+            <option value="first">--Please choose an option--</option>
+            <option value="second">Unit 1</option>
+            <option value="third">Unit 2</option>
+        </select>
+        
+        <select id="Unit2" style="height: 30px; margin-left: 30px;">
+            <option value="first">--Please choose an option--</option>
+            <option value="second">Unit 1</option>
+            <option value="third">Unit 2</option>
+        </select>
+    </div>
+    <br>
+    <br>
+    <div>
+      <h1 style = "text-align: center;">
+        <u>Enter Dice Roll Options</u>
+      </h1>
+      <br>
+    </div>
+    <div id = 'text-center'>
+      <!-- Create three text inpuits with a input for each one-->
+      <input type="text" id="diceRoll1" placeholder="Dice Roll 1" style="margin-right: 20px; margin-left: 20px;">
+      <input type="text" id="diceRoll2" placeholder="Dice Roll 2" style="margin-right: 20px;">
+      <input type="text" id="diceRoll3" placeholder="Dice Roll 3" style="margin-right: 20px;">
+
+    </div>
+    <div id="text-center">
+      <button onclick="submit()" id="manualRoll" style="align-items: center; margin-top: 100px; margin-right: 40px;">Manual Dice Roll</button>
+      <button onclick="submit()" id="randomRoll">Randomized Dice Roll</button>
+    </div>
+    <div id="damageOutput" style = "text-align: center; margin-top: 50px;">
+      
+    </div>
+    <div id="hiddenDiv" style = "display:none;">This was hidden until roll button press
+      <button onclick="hide()" id="hideMe">Hide Me</button>
+    </div>
+  </body>
+</html>

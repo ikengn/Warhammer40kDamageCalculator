@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Warhammer Damage Calculator!</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body id="homeBody">
+    <%@ include file="navBar.html" %>
+    <img src="images/warhammer2.jpg" style="margin-top:50px; display: block; margin-left: auto; margin-right: auto; width: 50%;"/>
+    <div id="description">
+      <h2 class="whiteText" style="text-align: center; padding-top: 20px">Welcome to the Damage Calculator Interface!
+        Please select your attacking and defending units below <br>as well indicate number of attackers
+        and whether you want to input rolls or the calculator to randomize them for you. <br>after selecting an attacking unit,
+        a dropdown will appear to select the weapon. <br> Once all options are selected, please click the To Hit Roll button that appears below</h2>
+    </div>
+    <div id = 'textInput'>
+        <h1 class="warhammerFont whiteText" id="center"><u>Select Attacking Unit</u></h1>
+        <h1 class="warhammerFont whiteText" id="center" style="margin-left: 130px;"><u>Select Defending Unit</u></h1>
+    </div>
+    <div id = 'textInput'>
+        <select  id = "Unit1" style="height: 30px; margin-right: 180px; margin-left: 20px;" onchange="unit1Change()">
+            <option value="first">--Please choose the Attack Unit--</option>
+            <option value="second">Weakling</option>
+            <option value="third">Tank</option>
+        </select>
+        
+        <select id="Unit2" style="height: 30px; margin-left: 30px;" onchange="valid()">
+            <option value="first">--Please choose the Defending Unit--</option>
+            <option value="second">Unit 1</option>
+            <option value="third">Unit 2</option>
+        </select>
+    </div>
+    <div id = "weaponDiv" style="display:none">
+      <h1 class="warhammerFont whiteText" style="text-align: center;"><u>Select Weapon</u></h1>
+      <div id="textInput">
+        <select  id = "Weapon1" onchange="valid()">
+          <option value="first">--Please choose a Weapon--</option>
+          <option value="second">Weapon 1</option>
+          <option value="third">Weapon 2</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div>
+      <h1 class="warhammerFont whiteText" style = "text-align: center;">
+        <u>Number of Attackers</u>
+      </h1>
+      <br>
+      <div id = 'text-center'>
+        <input type="number" id="numberOfUnits" placeholder="number of units" style="margin-right: 20px; margin-left: 20px;"min="1" step="1" onchange="validInt()">
+      </div>
+      <br>
+      <div id="typeOfCalc" style="text-align: center;">
+        <label for="RollA" class="whiteText"><input type="radio" id="RollA" name="Roll" value="UserInput" onchange="valid()">User Input</label>
+        <label for="RollB" class="whiteText"><input type="radio" id="RollB" name="Roll" value="Random" onchange="valid()">Random</label>
+      </div>
+    </div>
+    <br>
+    <div id = 'hitRollButton' style="display:none; text-align: center;">
+      <button class="button-18" id="toHitRoll" onclick="toHitPhase()">To Hit Roll</button>
+    </div>
+    <br>
+    <br>
+    <div id="hitPhase" style="display:none">
+      <div>
+        <h1 class="warhammerFont whiteText" style = "text-align: center;">
+          <u>Enter Hit Rolls</u>
+        </h1>
+        <br>
+      </div>
+      <div id = 'diceRollAreaHit' style="text-align: center;">
+        <!-- Create three text inpuits with a input for each one-->
+        <input type="number" id="diceRollHit1" placeholder="Dice Roll 1" style="margin-right: 20px; margin-left: 20px;"min="1" max="6" onchange="checkValidDie('diceRollHit1')">
+        
+      </div>
+      <br>
+      <div id="text-center">
+        <a id="numberOfHitsShowcase" class="whiteText">The number of Hits: </a>
+        <br>
+        <br>
+      </div>
+      <div style="text-align: center;">
+        <button class="button-18" onclick="calcHits()" id="calcHits" style="display: none; margin: 0 auto;">Calculate Hits</button>
+        <button class="button-18" onclick="toWoundPhase()" id="toWoundPhase" style="display: none; margin: 0 auto;">To Wound Phase</button>
+      </div>
+      <br>
+      <br>        
+    </div>
+
+    <div id="woundPhase" style="display:none">
+      <div>
+        <h1 class = "warhammerFont whiteText" style = "text-align: center;">
+          <u>Enter Wound Rolls</u>
+        </h1>
+        <br>
+      </div>
+      <div id = 'diceRollAreaWound' style="text-align: center;">
+        <!-- Create three text inpuits with a input for each one-->
+        <input type="number" id="diceRollWound1" placeholder="Dice Roll 1" style="margin-right: 20px; margin-left: 20px;"min="1" max="6" onchange="checkValidDie('diceRollWound1')">
+        
+      </div>
+      <br>
+      <div id="text-center">
+        <a id="numberOfWoundsShowcase" class="whiteText">The number of Wounds: </a>
+        <br>
+        <br>
+      </div> 
+      <div style="text-align: center;">
+        <button class="button-18" onclick="calcWounds()" id="calcWounds" style="display: none; margin: 0 auto;">Calculate Wounds</button>
+        <button class="button-18" onclick="toDamagePhase()" id="toDamagePhase" style="display: none; margin: 0 auto;">To Damage Phase</button>
+      </div>
+      <br>
+      <br>       
+    </div>
+    <div id="damagePhase" style="display:none">
+      <!-- Damage Phase -->
+      <div>
+        <h1 class="warhammerFont whiteText" style = "text-align: center;">
+          <u>Enter Damage Rolls</u>
+        </h1>
+        <br>
+      </div>
+      <div id = 'diceRollAreaDamage' style="text-align: center;">
+        <!-- Create three text inpuits with a input for each one-->
+        <input type="number" id="diceRollDamage1" placeholder="Dice Roll 1" style="margin-right: 20px; margin-left: 20px;"min="1" max="6" onchange="checkValidDie('diceRollDamage1')">
+        
+      </div>
+      <br>
+      <div id="text-center">
+        <a id="numberOfDamageShowcase" class="whiteText">The Number Of Damage Hits: </a>
+        <br>
+        <br>
+        <div style="text-align: center;">
+        </div>
+      </div>
+      <div>
+        <button class="button-18" onclick="calcDamage()" id="calcDamage" style="margin: 0 auto; display: none;">Calculate Damage</button>
+        <button onclick="toEndScreen()" id="toEndScreen" class="button-18" style="margin: 0 auto; display: none;">To End Damage</button>
+      </div>
+      <br>
+      <br>        
+    </div>
+
+    <div id="endScreen" style="display:none">
+      <div>
+        <h1 class="warhammerFont whiteText" style = "text-align: center;">
+          <u id="finalDamage">Final Damage: </u>
+        </h1>
+        <h1 class="warhammerFont whiteText" style = "text-align: center;">
+          <u id="overkill" style="display:none">You Overkilled the Opponent!</u>
+        </h1>
+        <br>
+      </div>
+      <div style="text-align: center;">
+        <button class="button-18" onclick="window.location='damageCalculator.jsp';" id="calcWounds" style="margin: 0 auto;">Re Calculate</button>
+      </div> 
+      <br>
+      <br>       
+    </div>
+  </body>
+</html>
